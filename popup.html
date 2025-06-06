@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>搜索引擎切换器</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: sans-serif;
+      width: 250px;
+      padding: 10px;
+      text-align: center;
+    }
+    p {
+      font-size: 14px;
+    }
+    .status {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .google-connected {
+      color: green;
+    }
+    .google-disconnected {
+      color: red;
+    }
+    .icon {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h3>自动搜索引擎切换器</h3>
+  <p>Google 连接状态: 
+    <span id="googleStatus" class="status">
+      <i id="statusIcon" class="icon fa-solid fa-spinner fa-spin"></i>
+      <span id="statusText">检查中...</span>
+    </span>
+  </p>
+  <p>当前搜索引擎: 
+    <span id="currentEngine" class="status">
+      <i id="engineIcon" class="icon fa-solid fa-spinner fa-spin"></i>
+      <span id="engineText">加载中...</span>
+    </span>
+  </p>
+  <script src="popup.js"></script>
+</body>
+</html>

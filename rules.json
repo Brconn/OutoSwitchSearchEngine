@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "transform": {
+          "queryTransform": {
+            "removeParams": ["q"],
+            "addOrReplaceParams": [{"key": "q", "value": "{q}"}]
+          }
+        }
+      }
+    },
+    "condition": {
+      "urlFilter": "*://www.bing.com/search*", 
+      "resourceTypes": ["main_frame"]
+    }
+  }
+]

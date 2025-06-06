@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "自动切换搜索引擎",
+  "version": "1.0",
+  "description": "根据网络连接状态自动在 Google 和 Bing 之间切换默认搜索引擎。",
+  "permissions": [
+    "storage",
+    "alarms",
+    "declarativeNetRequest",
+    "notifications",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://*.google.com/*",
+    "https://*.bing.com/*",
+    "https://www2.bing.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com;"
+  },
+  "chrome_settings_overrides": {
+    "search_provider": {
+      "name": "智能搜索",
+      "keyword": "s",
+      "search_url": "https://www2.bing.com/search?q={searchTerms}",
+      "favicon_url": "https://www.bing.com/favicon.ico",
+      "is_default": true,
+      "encoding": "UTF-8"
+    }
+  }
+}
