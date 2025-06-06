@@ -151,20 +151,21 @@ async function updateExtensionIcon(useGoogle) {
 }
 
 // 扩展安装或启动时运行
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener(async () => {
   console.log('扩展已安装或更新。');
-  // 初始化检查
-  checkAndSwitch();
+  // 1. 默认设置为 Bing (确保规则首先更新)
+  await updateSearchEngineRules(false);
+  // 2. 执行初始连接检查和潜在切换
+  await checkAndSwitch();
   // 设置定期检查的闹钟，例如每5分钟检查一次
   chrome.alarms.create('checkConnectionAlarm', {
     delayInMinutes: 1, // 首次延迟1分钟执行
     periodInMinutes: 5 // 每5分钟执行一次
   });
-  // 默认设置为 Bing
-  chrome.storage.local.set({ searchEngine: 'bing' });
-  // 初始化规则，确保有一个默认规则
-  updateSearchEngineRules(false); // 初始设置为 Bing
 });
+
+// Listener for browser startup
+chrome.runtime.onStartup.addListener(checkAndSwitch);
 
 // 监听闹钟事件
 chrome.alarms.onAlarm.addListener((alarm) => {
